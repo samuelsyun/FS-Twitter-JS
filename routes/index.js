@@ -1,19 +1,34 @@
 'use strict'
 
-const express = require('express');
-const router = express.Router();
+const router = require('express').Router();
 const tweetBank = require('../tweetBank');
 
-router.get('/', (req, res, next) => {
-  let tweets = tweetBank.list();
+module.exports = function makeRouterWithSockets(io) {
 
-  res.render('index', {tweets: tweets});
-})
+  const getAllTweets = (req, res, next) => {
+    let allTweets = tweetBank.list();
+    res.render('index', { tweets: allTweets, showForm: true });
+  };
 
-router.get('/users/:username', (req, res, next) => {
-  let tweetsUsername = tweetBank.find({name: req.params.username});
+  router.get('/', getAllTweets);
 
-  res.render('index', {tweets: tweetsUsername})
-})
+  router.get('/tweets', getAllTweets);
 
-module.exports = router;
+  router.get('/users/:username', (req, res, next) => {
+    let tweetsUsername = tweetBank.find({ name: req.params.username });
+    res.render('index', { tweets: tweetsUsername, showForm: true, username: req.params.username })
+  })
+
+  router.get('/tweets/:tweetid', (req, res, next) => {
+    let singleTweet = tweetBank.find({ id: Number(req.params.tweetid) });
+    res.render('index', { tweets: singleTweet })
+  })
+
+  router.post('/tweets', (req, res, next) => {
+    let newTweet = tweetBank.add(req.body.name, req.body.text);
+    io.sockets.emit('new_tweet', newTweet);
+    res.redirect('/');
+  })
+
+  return router;
+}

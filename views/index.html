@@ -3,13 +3,15 @@
 {% block content %}
 
   <div class="page-header">
-    <h1>Welcome to Twitter.js!</h1>
+    <h1>Welcome to Twitter-JS</h1>
   </div>
+
   <div class="row">
     <div class="col-md-3">
-      <img src="https://pbs.twimg.com/profile_images/2450268678/olxp11gnt09no2y2wpsh_normal.jpeg"><br>
-      <b>Your Name</b><br>
+      <img id="profile" src="img/leon.png"><br>
+      <b>Leon Yun</b><br>
       100 followers
+
       {% if showForm %}
         <form action="/tweets" method="POST">
           <label for="name_field">Name:</label>
@@ -21,11 +23,12 @@
           <input type="submit" value="Submit" />
         </form>
       {% endif %}
-    </div>
-    <div class="col-md-9">
 
-      <!-- display tweets here -->
+    </div>
+
+    <div class="col-md-9">
       <div id="tweets">
+
       {% for tweet in tweets %}
         <div class="tweetbox">
           <img>
@@ -35,8 +38,8 @@
           </div>
         </div>
       {% endfor %}
-      </div>
 
+      </div>
     </div>
   </div>
 
