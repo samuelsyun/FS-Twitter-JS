@@ -1,6 +1,6 @@
 # Workshop from Fullstack Code of Academy
 
-### Twitter-like website
+### Twitter-like website (database not used)
 
 - Fork and clone
 - npm install
