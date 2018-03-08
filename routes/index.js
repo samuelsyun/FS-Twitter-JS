@@ -14,6 +14,14 @@ module.exports = function makeRouterWithSockets(io) {
 
   router.get('/tweets', getAllTweets);
 
+  router.get('/about', (req, res, next) => {
+    res.send('This is About Page. Empty!')
+  })
+
+  router.get('/contact', (req, res, next) => {
+    res.send('This is Contact Page. Empty!')
+  })
+
   router.get('/users/:username', (req, res, next) => {
     let tweetsUsername = tweetBank.find({ name: req.params.username });
     res.render('index', { tweets: tweetsUsername, showForm: true, username: req.params.username })
