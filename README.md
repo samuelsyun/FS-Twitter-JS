@@ -1,6 +1,6 @@
 # Workshop from Fullstack Code of Academy
 
-### Twitter-like website (database not used)
+### Twitter-like website (database used - PosgreSQL)
 
 - Fork and clone
 - npm install
@@ -8,4 +8,4 @@
 - http://localhost:3000/
 
 
-javascript, express, socket.io, css, html, jquery, bootstrap, lodash, body-parser, morgan, and nunjucks
+javascript, express, socket.io, css, html, jquery, bootstrap, lodash, body-parser, morgan, nunjucks, pg, and postgresql
